@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Become a Field Partner | Triage Partners</title>
+<meta name="description" content="Register your company with the Triage Family of Companies supplier database.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CONFIGURATION — edit these two values before going live
+   ============================================================ */
+</style>
+<script>
+  // Paste your Web3Forms access key here:
+  const WEB3FORMS_ACCESS_KEY = "1008faf0-f62d-47fc-8b4a-1edbe97e2112";
+  // Shown to vendors if a submission fails:
+  const SOURCING_EMAIL = "sourcing@triage-partners.com";
+</script>
+<style>
+:root{
+  --red:#F32735; --red-dark:#C81E2B; --ink:#111; --text:#333; --muted:#69727D;
+  --line:#E3E5E8; --bg:#F6F7F8; --card:#fff; --ok:#1E7F4F; --err:#C81E2B;
+  --radius:10px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);background:var(--bg);font-size:15px;line-height:1.55}
+h1,h2,h3{font-family:Rajdhani,Poppins,sans-serif;color:var(--ink);line-height:1.1;margin:0}
+a{color:var(--red)}
+/* Header / hero */
+.hero{background:#000;color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(243,39,53,.55),rgba(243,39,53,0) 70%)}
+.hero-inner{max-width:1080px;margin:0 auto;padding:28px 20px 56px;position:relative;z-index:1}
+.logo{height:44px;width:auto;display:block}
+.eyebrow{margin-top:44px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:600}
+.hero h1{color:#fff;font-size:clamp(34px,5vw,52px);margin-top:8px}
+.hero p{max-width:640px;color:#CFD2D6;margin:14px 0 0}
+/* Layout */
+.wrap{max-width:1080px;margin:-28px auto 60px;padding:0 20px;display:grid;grid-template-columns:280px 1fr;gap:24px;position:relative;z-index:2}
+@media (max-width:860px){.wrap{grid-template-columns:1fr}}
+.side{display:flex;flex-direction:column;gap:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.panel h3{font-size:20px;margin-bottom:10px}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.steps li{display:flex;align-items:center;gap:12px;padding:8px 6px;border-radius:8px;color:var(--muted);font-weight:500}
+.steps .n{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:600}
+.steps li.active{color:var(--ink)}
+.steps li.active .n{border-color:var(--red);background:var(--red);color:#fff}
+.steps li.done .n{border-color:var(--ink);background:var(--ink);color:#fff}
+@media (max-width:860px){.steps{flex-direction:row;justify-content:space-between}.steps .lbl{display:none}}
+.info p{margin:0 0 10px;font-size:14px}
+.info ol{margin:0;padding-left:18px;font-size:14px}
+.info li{margin-bottom:6px}
+/* Form */
+form .panel{padding:30px}
+.section{display:none}
+.section.active{display:block}
+.section h2{font-size:28px}
+.section .sub{color:var(--muted);margin:4px 0 22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}
+.full{grid-column:1/-1}
+@media (max-width:620px){.grid{grid-template-columns:1fr}form .panel{padding:22px}}
+label.f{display:block;font-weight:500;color:var(--ink);font-size:14px;margin-bottom:6px}
+.req{color:var(--red)}
+.hint{font-size:12.5px;color:var(--muted);margin-top:4px}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],select,textarea{
+  width:100%;font:inherit;color:var(--ink);background:#fff;border:1px solid #CDD1D6;border-radius:8px;padding:11px 12px;transition:border-color .15s,box-shadow .15s}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(243,39,53,.15)}
+.invalid input,.invalid select,.invalid textarea{border-color:var(--err)}
+.err{display:none;color:var(--err);font-size:12.5px;margin-top:4px}
+.invalid .err{display:block}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{font-weight:500;color:var(--ink);font-size:14px;margin-bottom:8px;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;padding:7px 12px;border:1px solid #CDD1D6;border-radius:999px;font-size:13.5px;cursor:pointer;user-select:none;background:#fff;transition:all .12s}
+.chip input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip input:focus-visible+span{box-shadow:0 0 0 3px rgba(243,39,53,.3)}
+.states{display:grid;grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:6px}
+.states .chip span{width:100%;text-align:center;padding:6px 0;border-radius:6px}
+.states.disabled{opacity:.4;pointer-events:none}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.check input{margin-top:4px;accent-color:var(--red);width:16px;height:16px;flex:none}
+.count{float:right;font-weight:400;color:var(--muted);font-size:12px}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+.btn{font:inherit;font-weight:600;border:0;border-radius:8px;padding:12px 26px;cursor:pointer;transition:background .15s}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{background:var(--red-dark)}
+.btn-primary[disabled]{opacity:.6;cursor:wait}
+.btn-ghost{background:transparent;color:var(--ink);padding-left:0}
+.btn-ghost:hover{color:var(--red)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.alert{display:none;margin-top:18px;padding:12px 14px;border-radius:8px;background:#FDECEE;color:var(--err);font-size:14px}
+.alert.show{display:block}
+.legendish{font-weight:500;color:var(--ink);font-size:14px;margin-bottom:10px}
+.ins{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:border-color .12s,background .12s}
+.ins input{margin-top:3px;accent-color:var(--red);width:18px;height:18px;flex:none}
+.ins-body{display:flex;flex-direction:column;gap:2px;color:var(--ink)}
+.ins .lim{font-size:13px;color:var(--muted)}
+.ins:has(input:checked){border-color:var(--ink);background:#FAFAFA}
+.review dl{display:grid;grid-template-columns:200px 1fr;gap:6px 16px;margin:0;font-size:14px}
+.review dt{color:var(--muted)}
+.review dd{margin:0;color:var(--ink);word-break:break-word}
+@media (max-width:620px){.legendish{font-weight:500;color:var(--ink);font-size:14px;margin-bottom:10px}
+.ins{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:border-color .12s,background .12s}
+.ins input{margin-top:3px;accent-color:var(--red);width:18px;height:18px;flex:none}
+.ins-body{display:flex;flex-direction:column;gap:2px;color:var(--ink)}
+.ins .lim{font-size:13px;color:var(--muted)}
+.ins:has(input:checked){border-color:var(--ink);background:#FAFAFA}
+.review dl{grid-template-columns:1fr}.review dd{margin-bottom:8px}}
+.done-card{text-align:center;padding:40px 20px}
+.done-icon{width:64px;height:64px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;margin:0 auto 18px;font-size:30px}
+.done-card p{max-width:520px;margin:12px auto 0}
+.ref{display:inline-block;margin-top:16px;font-family:ui-monospace,Menlo,monospace;background:var(--bg);padding:6px 12px;border-radius:6px;font-size:13px}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <img class="logo" src="https://triage-partners.com/wp-content/uploads/2021/12/TriagePartners_Wht@4x-8.png" alt="Triage Partners">
+    <div class="eyebrow">Telecom Field Services · Subcontractor Program</div>
+    <h1>Become a Triage Field Partner</h1>
+    <p>We're looking for fiber and copper contractors to work with us on installation, repair, drop bury and aerial or underground construction. Tell us about your crews and coverage area, and our team will reach out when there's work that fits.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <aside class="side">
+    <div class="panel">
+      <ol class="steps" id="stepList">
+        <li class="active"><span class="n">1</span><span class="lbl">Company</span></li>
+        <li><span class="n">2</span><span class="lbl">Contact</span></li>
+        <li><span class="n">3</span><span class="lbl">Services</span></li>
+        <li><span class="n">4</span><span class="lbl">Insurance</span></li>
+        <li><span class="n">5</span><span class="lbl">Review</span></li>
+      </ol>
+    </div>
+    <div class="panel info">
+      <h3>What to expect</h3>
+      <ol>
+        <li>It takes about 5 minutes. No documents needed yet.</li>
+        <li>Our team reviews registrations regularly and matches contractors to upcoming projects by service and location.</li>
+        <li>If there's a fit, we'll reach out and ask for your COI and onboarding paperwork.</li>
+      </ol>
+      <p class="hint" style="margin-top:12px">Registering doesn't guarantee a business relationship with Triage.</p>
+    </div>
+  </aside>
+
+  <form id="supplierForm" novalidate>
+    <div class="panel">
+      <!-- honeypot (spam trap) -->
+      <div class="hp" aria-hidden="true"><label>Leave blank<input type="text" name="hp_field" tabindex="-1" autocomplete="off"></label></div>
+
+      <!-- STEP 1 -->
+      <section class="section active" data-step="1">
+        <h2>Company information</h2>
+        <p class="sub">Tell us who you are.</p>
+        <div class="grid">
+          <div class="full fld"><label class="f" for="company_legal_name">Legal company name <span class="req">*</span></label>
+            <input type="text" id="company_legal_name" name="company_legal_name" required autocomplete="organization"><div class="err">Enter your company's legal name.</div></div>
+          <div class="fld"><label class="f" for="dba_name">DBA / trade name</label>
+            <input type="text" id="dba_name" name="dba_name"></div>
+          <div class="fld"><label class="f" for="website">Website</label>
+            <input type="url" id="website" name="website" placeholder="www.example.com"><div class="hint">Optional</div></div>
+          <div class="full fld"><label class="f" for="hq_street">Headquarters street address</label>
+            <input type="text" id="hq_street" name="hq_street" autocomplete="street-address"></div>
+          <div class="fld"><label class="f" for="hq_city">City <span class="req">*</span></label>
+            <input type="text" id="hq_city" name="hq_city" required autocomplete="address-level2"><div class="err">Enter a city.</div></div>
+          <div class="fld"><label class="f" for="hq_state">State / province <span class="req">*</span></label>
+            <input type="text" id="hq_state" name="hq_state" required autocomplete="address-level1"><div class="err">Enter a state or province.</div></div>
+          <div class="fld"><label class="f" for="hq_postal">ZIP / postal code</label>
+            <input type="text" id="hq_postal" name="hq_postal" autocomplete="postal-code"></div>
+          <div class="fld"><label class="f" for="hq_country">Country <span class="req">*</span></label>
+            <select id="hq_country" name="hq_country" required>
+              <option value="United States" selected>United States</option><option>Canada</option><option>Mexico</option><option>Other</option>
+            </select></div>
+          <div class="fld"><label class="f" for="year_founded">Year founded</label>
+            <input type="number" id="year_founded" name="year_founded" min="1800" max="2100" inputmode="numeric"></div>
+          <div class="fld"><label class="f" for="employee_count">Number of employees <span class="req">*</span></label>
+            <select id="employee_count" name="employee_count" required>
+              <option value="">Select…</option><option>1–10</option><option>11–50</option><option>51–200</option><option>201–500</option><option>501–1,000</option><option>1,000+</option>
+            </select><div class="err">Select a range.</div></div>
+          <div class="fld"><label class="f" for="annual_revenue">Annual revenue</label>
+            <select id="annual_revenue" name="annual_revenue">
+              <option value="">Prefer not to say</option><option>Under $1M</option><option>$1M–$5M</option><option>$5M–$25M</option><option>$25M–$100M</option><option>$100M+</option>
+            </select></div>
+          <div class="fld"><label class="f" for="uei_duns">UEI or D-U-N-S number</label>
+            <input type="text" id="uei_duns" name="uei_duns"><div class="hint">Optional</div></div>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="section" data-step="2">
+        <h2>Primary contact</h2>
+        <p class="sub">Who should our sourcing team reach out to?</p>
+        <div class="grid">
+          <div class="fld"><label class="f" for="contact_first">First name <span class="req">*</span></label>
+            <input type="text" id="contact_first" name="contact_first" required autocomplete="given-name"><div class="err">Enter a first name.</div></div>
+          <div class="fld"><label class="f" for="contact_last">Last name <span class="req">*</span></label>
+            <input type="text" id="contact_last" name="contact_last" required autocomplete="family-name"><div class="err">Enter a last name.</div></div>
+          <div class="full fld"><label class="f" for="contact_title">Job title</label>
+            <input type="text" id="contact_title" name="contact_title" autocomplete="organization-title"></div>
+          <div class="fld"><label class="f" for="contact_email">Business email <span class="req">*</span></label>
+            <input type="email" id="contact_email" name="contact_email" required autocomplete="email"><div class="err">Enter a valid email address.</div></div>
+          <div class="fld"><label class="f" for="contact_phone">Phone <span class="req">*</span></label>
+            <input type="tel" id="contact_phone" name="contact_phone" required autocomplete="tel"><div class="err">Enter a phone number.</div></div>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="section" data-step="3">
+        <h2>Services</h2>
+        <p class="sub">Tell us what work your crews perform.</p>
+        <div class="grid">
+          <fieldset class="full fld" data-group="categories" data-min="1">
+            <legend>Which services do you provide? <span class="req">*</span> <span class="hint" style="display:inline">(select all that apply)</span></legend>
+            <div class="chips" id="categoryChips"></div>
+            <div class="err">Select at least one service.</div>
+          </fieldset>
+          <div class="full fld"><label class="f" for="capabilities_summary">Tell us about your work <span class="req">*</span> <span class="count" id="capCount">0 / 1000</span></label>
+            <textarea id="capabilities_summary" name="capabilities_summary" required maxlength="1000" placeholder="For example: number of crews, key equipment (bore rigs, plows, bucket trucks, splicing trailers), typical job size, and the carriers or contractors you've worked for."></textarea>
+            <div class="err">Give a brief description of your work.</div></div>
+          <div class="fld"><label class="f" for="self_perform">How do you perform the work?</label>
+            <select id="self_perform" name="self_perform">
+              <option value="">Select…</option><option>Self-perform with our own crews</option><option>Subcontract</option><option>Both</option>
+            </select></div>
+          <fieldset class="full fld" data-group="service_states" id="statesField">
+            <legend>Where can you provide products or services? <span class="req">*</span></legend>
+            <label class="check" style="margin-bottom:10px"><input type="checkbox" id="nationwide" name="service_area_nationwide" value="Yes"> <span><strong>Nationwide</strong> (all U.S. states)</span></label>
+            <div class="states chips" id="stateChips"></div>
+            <div class="err">Select "Nationwide" or at least one state.</div>
+          </fieldset>
+        </div>
+      </section>
+
+      <!-- STEP 4 -->
+      <section class="section" data-step="4">
+        <h2>Insurance &amp; business details</h2>
+        <p class="sub">Contractors must carry the coverage below before starting work with Triage. Select what you have today. If you're missing something, you can still register and we'll let you know what's needed before work begins. If you're selected, we'll ask for a certificate of insurance (COI).</p>
+        <div class="grid">
+          <div class="full" id="insuranceList"></div>
+          <fieldset class="full fld">
+            <legend>Is your business any of the following? <span class="hint" style="display:inline">(optional)</span></legend>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="business_certifications" value="Small business"><span>Small business</span></label>
+              <label class="chip"><input type="checkbox" name="business_certifications" value="Minority-owned"><span>Minority-owned</span></label>
+              <label class="chip"><input type="checkbox" name="business_certifications" value="Women-owned"><span>Women-owned</span></label>
+              <label class="chip"><input type="checkbox" name="business_certifications" value="Veteran-owned"><span>Veteran-owned</span></label>
+            </div>
+          </fieldset>
+          <div class="fld"><label class="f" for="referral_source">How did you hear about us?</label>
+            <select id="referral_source" name="referral_source">
+              <option value="">Select…</option><option>Triage employee</option><option>Existing supplier</option><option>Triage website</option><option>LinkedIn</option><option>Industry event</option><option>Search engine</option><option>Other</option>
+            </select></div>
+          <div class="fld"><label class="f" for="referral_name">Referred by (if applicable)</label>
+            <input type="text" id="referral_name" name="referral_name"></div>
+          <div class="full fld" data-group="consent" data-min="1" style="margin-top:6px">
+            <label class="check"><input type="checkbox" name="consent" value="Yes" id="consent">
+              <span>I confirm the information provided is accurate, and I agree that Triage may store it in its internal supplier database and contact me about sourcing opportunities. <span class="req">*</span></span></label>
+            <div class="err">Please confirm to continue.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 5 -->
+      <section class="section review" data-step="5">
+        <h2>Review &amp; submit</h2>
+        <p class="sub">Check your details. You can go back to edit anything.</p>
+        <dl id="reviewList"></dl>
+        <div class="alert" id="submitError"></div>
+      </section>
+
+      <!-- DONE -->
+      <section class="section done-card" data-step="6">
+        <div class="done-icon">✓</div>
+        <h2>Thanks, you're registered</h2>
+        <p>Your company is now in the Triage contractor database. Our team reviews registrations regularly, and we'll contact you directly when there's work that fits your services and coverage area.</p>
+        <div class="ref" id="refId"></div>
+      </section>
+
+      <div class="nav" id="nav">
+        <button type="button" class="btn btn-ghost" id="backBtn" style="visibility:hidden">← Back</button>
+        <button type="button" class="btn btn-primary" id="nextBtn">Continue</button>
+      </div>
+    </div>
+  </form>
+</main>
+
+<footer>© <span id="yr"></span> Triage Partners, LLC · 205 S Hoover Blvd, Suite 401, Tampa, FL 33609</footer>
+
+<script>
+(function(){
+  const CATEGORIES = [
+    "Fiber installation","Fiber repair & maintenance","Copper installation","Copper repair & maintenance",
+    "Drop bury","Aerial construction","Underground construction","Directional boring","Plowing",
+    "OSP engineering & design"
+  ];
+  const INSURANCE = [
+    {key:"ins_general_liability", title:"Commercial General Liability", limits:"$1,000,000 each occurrence · $2,000,000 general aggregate."},
+    {key:"ins_auto", title:"Comprehensive Auto Liability", limits:"$2,000,000 combined single limit per occurrence, covering all owned, non-owned and hired vehicles used for the work."},
+    {key:"ins_workers_comp", title:"Workers' Compensation / Employer's Liability", limits:"$1,000,000 each accident · $1,000,000 disease – policy limit · $1,000,000 disease – each employee."},
+    {key:"ins_umbrella", title:"Umbrella / Excess Liability", limits:"$5,000,000 per occurrence, following form over general liability, auto and workers' compensation / employer's liability."},
+    {key:"ins_professional", title:"Professional Liability (Errors & Omissions)", limits:"$1,000,000 per claim and $2,000,000 annual aggregate, for professional services."}
+  ];
+
+  const STATES = ["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY","PR"];
+
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const chip = (name,v,label) => `<label class="chip"><input type="checkbox" name="${name}" value="${v}"><span>${label||v}</span></label>`;
+  $("#categoryChips").innerHTML = CATEGORIES.map(c=>chip("categories",c)).join("");
+  $("#stateChips").innerHTML = STATES.map(s=>chip("service_states",s)).join("");
+  $("#insuranceList").innerHTML = `<div class="legendish">Which of these coverages do you carry today? <span class="hint" style="display:inline">(select all that apply)</span></div>` +
+    INSURANCE.map(i=>`
+    <label class="ins">
+      <input type="checkbox" name="${i.key}" value="Yes">
+      <span class="ins-body"><strong>${i.title}</strong><span class="lim">${i.limits}</span></span>
+    </label>`).join("");
+  $("#yr").textContent = new Date().getFullYear();
+
+  const form = $("#supplierForm");
+  let step = 1; const LAST = 5;
+
+  // dynamic bits
+  form.addEventListener("change", e=>{
+    if (e.target.id==="nationwide") $("#stateChips").classList.toggle("disabled", e.target.checked);
+    const f = e.target.closest(".fld"); if (f && f.classList.contains("invalid")) validateField(f);
+  });
+  form.addEventListener("input", e=>{
+    if (e.target.id==="capabilities_summary") $("#capCount").textContent = e.target.value.length+" / 1000";
+    const f = e.target.closest(".fld"); if (f && f.classList.contains("invalid")) validateField(f);
+  });
+
+  function validateField(f){
+    let ok = true;
+    const g = f.dataset.group;
+    if (g==="service_states"){
+      ok = $("#nationwide").checked || $$('input[name=service_states]:checked').length>0;
+    } else if (g && f.dataset.min){
+      ok = f.querySelectorAll(`input[name=${g}]:checked`).length >= +f.dataset.min;
+    } else {
+      const el = f.querySelector("input,select,textarea");
+      if (!el) return true;
+      if (el.required){
+        const v = el.value.trim();
+        ok = v!=="";
+        if (ok && el.type==="email") ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+        if (ok && el.id==="website") ok = /\.[a-z]{2,}/i.test(v);
+        if (ok && el.type==="tel") ok = v.replace(/\D/g,"").length>=7;
+      }
+    }
+    f.classList.toggle("invalid", !ok);
+    return ok;
+  }
+  function validateStep(n){
+    const sec = form.querySelector(`[data-step="${n}"]`);
+    const fields = [...sec.querySelectorAll(".fld")];
+    const results = fields.map(validateField);
+    const firstBad = fields[results.indexOf(false)];
+    if (firstBad){ const el=firstBad.querySelector("input,select,textarea"); firstBad.scrollIntoView({behavior:"smooth",block:"center"}); el && el.focus({preventScroll:true}); }
+    return !firstBad;
+  }
+
+  function collect(){
+    const fd = new FormData(form), out = {};
+    const multi = ["categories","service_states","business_certifications"];
+    for (const el of form.elements){
+      if (!el.name || el.name==="hp_field") continue;
+      if (multi.includes(el.name)) continue;
+      if (el.type==="radio"){ if (!(el.name in out)) out[el.name]=""; if (el.checked) out[el.name]=el.value; }
+      else if (el.type==="checkbox") out[el.name] = el.checked ? el.value : "No";
+      else out[el.name] = (el.value||"").trim();
+    }
+    multi.forEach(k => out[k] = fd.getAll(k).join("; "));
+    if (out.service_area_nationwide==="Yes") out.service_states = "Nationwide";
+    let w = out.website; if (w && !/^https?:\/\//i.test(w)) out.website = "https://"+w;
+    return out;
+  }
+
+  const LABELS = {company_legal_name:"Company",dba_name:"DBA",website:"Website",hq_city:"City",hq_state:"State",hq_country:"Country",
+    employee_count:"Employees",annual_revenue:"Revenue",contact_first:"Contact first name",contact_last:"Contact last name",contact_title:"Title",
+    contact_email:"Email",contact_phone:"Phone",categories:"Services",
+    capabilities_summary:"About your work",self_perform:"Crews",service_states:"Service area",
+    ins_general_liability:"General liability",ins_auto:"Auto liability",ins_workers_comp:"Workers' comp",ins_umbrella:"Umbrella / excess",ins_professional:"Professional (E&O)",
+    business_certifications:"Business type"};
+  function buildReview(){
+    const d = collect();
+    $("#reviewList").innerHTML = Object.keys(LABELS).filter(k=>d[k]).map(k=>`<dt>${LABELS[k]}</dt><dd></dd>`).join("");
+    const dds = $$("#reviewList dd"); Object.keys(LABELS).filter(k=>d[k]).forEach((k,i)=>dds[i].textContent=d[k]);
+  }
+
+  function show(n){
+    step = n;
+    $$(".section").forEach(s=>s.classList.toggle("active", +s.dataset.step===n));
+    $$("#stepList li").forEach((li,i)=>{ li.classList.toggle("active", i+1===n); li.classList.toggle("done", i+1<n); });
+    $("#backBtn").style.visibility = (n>1 && n<=LAST) ? "visible" : "hidden";
+    $("#nextBtn").textContent = n===LAST ? "Submit registration" : "Continue";
+    $("#nav").style.display = n>LAST ? "none" : "";
+    if (n===LAST) buildReview();
+    window.scrollTo({top: document.querySelector(".wrap").offsetTop-20, behavior:"smooth"});
+  }
+
+  $("#backBtn").addEventListener("click", ()=>show(step-1));
+  $("#nextBtn").addEventListener("click", async ()=>{
+    if (step<LAST){ if (validateStep(step)) show(step+1); return; }
+    await submit();
+  });
+
+  async function submit(){
+    const btn = $("#nextBtn"), alertBox = $("#submitError");
+    alertBox.classList.remove("show");
+    if (form.hp_field.value){ show(6); return; } // bot: pretend success
+    const data = collect();
+    data.submission_id = "TSP-" + new Date().toISOString().slice(0,10).replace(/-/g,"") + "-" + Math.random().toString(36).slice(2,7).toUpperCase();
+    data.submitted_at = new Date().toISOString();
+    data.source_page = location.href;
+    btn.disabled = true; btn.textContent = "Submitting…";
+    try{
+      if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY.startsWith("PASTE_")) throw new Error("Form not configured");
+      const body = Object.assign({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: "New Field Partner Registration: " + data.company_legal_name,
+        from_name: "Triage Field Partner Registration",
+        replyto: data.contact_email
+      }, data);
+      const res = await fetch("https://api.web3forms.com/submit", {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body: JSON.stringify(body)});
+      const out = await res.json().catch(()=>({}));
+      if (!res.ok || out.success === false) throw new Error(out.message || ("HTTP "+res.status));
+      $("#refId").textContent = "Reference: " + data.submission_id;
+      show(6);
+    }catch(err){
+      console.error(err);
+      alertBox.innerHTML = "";
+      alertBox.append("We couldn't submit your registration just now. Please try again in a few minutes, or email ");
+      const a = document.createElement("a"); a.href="mailto:"+SOURCING_EMAIL; a.textContent=SOURCING_EMAIL; alertBox.append(a, ".");
+      alertBox.classList.add("show");
+      btn.disabled = false; btn.textContent = "Submit registration";
+    }
+  }
+})();
+</script>
+</body>
+</html>
