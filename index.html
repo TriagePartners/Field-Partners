@@ -127,7 +127,7 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
     <img class="logo" src="https://triage-partners.com/wp-content/uploads/2021/12/TriagePartners_Wht@4x-8.png" alt="Triage Partners">
     <div class="eyebrow">Telecom Field Services · Subcontractor Program</div>
     <h1>Become a Triage Field Partner</h1>
-    <p>We're looking for fiber and copper contractors to work with us on installation, repair, drop bury and aerial or underground construction. Tell us about your crews and coverage area, and our team will reach out when there's work that fits.</p>
+    <p>We’re looking for telecom contractors specializing in fiber and copper installation and repair, drop bury, aerial and underground construction, or OSP and MDU engineering. Tell us about your team, services, and coverage area, and we’ll reach out when an opportunity fits.</p>
   </div>
 </header>
 
@@ -169,8 +169,8 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
             <input type="text" id="dba_name" name="dba_name"></div>
           <div class="fld"><label class="f" for="website">Website</label>
             <input type="url" id="website" name="website" placeholder="www.example.com"><div class="hint">Optional</div></div>
-          <div class="full fld"><label class="f" for="hq_street">Headquarters street address<span class="req">*</span></label>
-            <input type="text" id="hq_street" name="hq_street" autocomplete="street-address"></div>
+          <div class="full fld"><label class="f" for="hq_street">Headquarters street address <span class="req">*</span></label>
+            <input type="text" id="hq_street" name="hq_street" required autocomplete="street-address"><div class="err">Enter a street address.</div></div>
           <div class="fld"><label class="f" for="hq_city">City <span class="req">*</span></label>
             <input type="text" id="hq_city" name="hq_city" required autocomplete="address-level2"><div class="err">Enter a city.</div></div>
           <div class="fld"><label class="f" for="hq_state">State / province <span class="req">*</span></label>
@@ -224,9 +224,8 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
             <div class="chips" id="categoryChips"></div>
             <div class="err">Select at least one service.</div>
           </fieldset>
-          <div class="full fld"><label class="f" for="capabilities_summary">Tell us about your work <span class="optional">*</span> <span class="count" id="capCount">0 / 1000</span></label>
-            <textarea id="capabilities_summary" name="capabilities_summary" required maxlength="1000" placeholder="For example: number of crews, key equipment (bore rigs, plows, bucket trucks, splicing trailers), typical job size, and the carriers or contractors you've worked for."></textarea>
-            <div class="err">Give a brief description of your work.</div></div>
+          <div class="full fld"><label class="f" for="capabilities_summary">Tell us about your work <span class="hint" style="display:inline">(optional)</span> <span class="count" id="capCount">0 / 1000</span></label>
+            <textarea id="capabilities_summary" name="capabilities_summary" maxlength="1000" placeholder="For example: number of crews, key equipment (bore rigs, plows, bucket trucks, splicing trailers), typical job size, and the carriers or contractors you've worked for."></textarea></div>
           <div class="fld"><label class="f" for="self_perform">How do you perform the work?</label>
             <select id="self_perform" name="self_perform">
               <option value="">Select…</option><option>Self-perform with our own crews</option><option>Subcontract</option><option>Both</option>
@@ -242,13 +241,10 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
 
       <!-- STEP 4 -->
       <section class="section" data-step="4">
-        <h2>Insurance &amp; business details</h2>
+        <h2>Insurance</h2>
         <p class="sub">Contractors must carry the coverage below before starting work with Triage. Select what you have today. If you're missing something, you can still register and we'll let you know what's needed before work begins. If you're selected, we'll ask for a certificate of insurance (COI).</p>
         <div class="grid">
           <div class="full" id="insuranceList"></div>
-          <fieldset class="full fld">
-            </div>
-          </fieldset>
           <div class="fld"><label class="f" for="referral_source">How did you hear about us?</label>
             <select id="referral_source" name="referral_source">
               <option value="">Select…</option><option>Triage employee</option><option>Existing supplier</option><option>Triage website</option><option>LinkedIn</option><option>Industry event</option><option>Search engine</option><option>Other</option>
@@ -292,9 +288,9 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
 <script>
 (function(){
   const CATEGORIES = [
-    "Fiber installation & repair","Copper installation & repair",
+    "Fiber install & repair","Copper install & repair",
     "Drop bury","Aerial construction","Underground construction","Directional boring","Plowing",
-    "OSP engineering & design"
+    "OSP & MDU engineering"
   ];
   const INSURANCE = [
     {key:"ins_general_liability", title:"Commercial General Liability", limits:"$1,000,000 each occurrence · $2,000,000 general aggregate."},
@@ -363,7 +359,7 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
 
   function collect(){
     const fd = new FormData(form), out = {};
-    const multi = ["categories","service_states","business_certifications"];
+    const multi = ["categories","service_states"];
     for (const el of form.elements){
       if (!el.name || el.name==="hp_field") continue;
       if (multi.includes(el.name)) continue;
@@ -381,8 +377,7 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
     employee_count:"Employees",annual_revenue:"Revenue",contact_first:"Contact first name",contact_last:"Contact last name",contact_title:"Title",
     contact_email:"Email",contact_phone:"Phone",categories:"Services",
     capabilities_summary:"About your work",self_perform:"Crews",service_states:"Service area",
-    ins_general_liability:"General liability",ins_auto:"Auto liability",ins_workers_comp:"Workers' comp",ins_umbrella:"Umbrella / excess",ins_professional:"Professional (E&O)",
-    business_certifications:"Business type"};
+    ins_general_liability:"General liability",ins_auto:"Auto liability",ins_workers_comp:"Workers' comp",ins_umbrella:"Umbrella / excess",ins_professional:"Professional (E&O)"};
   function buildReview(){
     const d = collect();
     $("#reviewList").innerHTML = Object.keys(LABELS).filter(k=>d[k]).map(k=>`<dt>${LABELS[k]}</dt><dd></dd>`).join("");
