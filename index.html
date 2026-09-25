@@ -169,7 +169,7 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
             <input type="text" id="dba_name" name="dba_name"></div>
           <div class="fld"><label class="f" for="website">Website</label>
             <input type="url" id="website" name="website" placeholder="www.example.com"><div class="hint">Optional</div></div>
-          <div class="full fld"><label class="f" for="hq_street">Headquarters street address</label>
+          <div class="full fld"><label class="f" for="hq_street">Headquarters street address<span class="req">*</span></label>
             <input type="text" id="hq_street" name="hq_street" autocomplete="street-address"></div>
           <div class="fld"><label class="f" for="hq_city">City <span class="req">*</span></label>
             <input type="text" id="hq_city" name="hq_city" required autocomplete="address-level2"><div class="err">Enter a city.</div></div>
@@ -224,7 +224,7 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
             <div class="chips" id="categoryChips"></div>
             <div class="err">Select at least one service.</div>
           </fieldset>
-          <div class="full fld"><label class="f" for="capabilities_summary">Tell us about your work <span class="req">*</span> <span class="count" id="capCount">0 / 1000</span></label>
+          <div class="full fld"><label class="f" for="capabilities_summary">Tell us about your work <span class="optional">*</span> <span class="count" id="capCount">0 / 1000</span></label>
             <textarea id="capabilities_summary" name="capabilities_summary" required maxlength="1000" placeholder="For example: number of crews, key equipment (bore rigs, plows, bucket trucks, splicing trailers), typical job size, and the carriers or contractors you've worked for."></textarea>
             <div class="err">Give a brief description of your work.</div></div>
           <div class="fld"><label class="f" for="self_perform">How do you perform the work?</label>
@@ -247,12 +247,6 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
         <div class="grid">
           <div class="full" id="insuranceList"></div>
           <fieldset class="full fld">
-            <legend>Is your business any of the following? <span class="hint" style="display:inline">(optional)</span></legend>
-            <div class="chips">
-              <label class="chip"><input type="checkbox" name="business_certifications" value="Small business"><span>Small business</span></label>
-              <label class="chip"><input type="checkbox" name="business_certifications" value="Minority-owned"><span>Minority-owned</span></label>
-              <label class="chip"><input type="checkbox" name="business_certifications" value="Women-owned"><span>Women-owned</span></label>
-              <label class="chip"><input type="checkbox" name="business_certifications" value="Veteran-owned"><span>Veteran-owned</span></label>
             </div>
           </fieldset>
           <div class="fld"><label class="f" for="referral_source">How did you hear about us?</label>
@@ -298,7 +292,7 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
 <script>
 (function(){
   const CATEGORIES = [
-    "Fiber installation","Fiber repair & maintenance","Copper installation","Copper repair & maintenance",
+    "Fiber installation & repair","Copper installation & repair",
     "Drop bury","Aerial construction","Underground construction","Directional boring","Plowing",
     "OSP engineering & design"
   ];
