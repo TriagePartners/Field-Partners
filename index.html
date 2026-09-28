@@ -102,6 +102,7 @@ legend{font-weight:500;color:var(--ink);font-size:14px;margin-bottom:8px;padding
 .ins input{margin-top:3px;accent-color:var(--red);width:18px;height:18px;flex:none}
 .ins-body{display:flex;flex-direction:column;gap:2px;color:var(--ink)}
 .ins .lim{font-size:13px;color:var(--muted)}
+.ins-note{margin:6px 0 4px;padding:12px 14px;border-left:3px solid var(--red);background:var(--bg);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--text)}
 .ins:has(input:checked){border-color:var(--ink);background:#FAFAFA}
 .review dl{display:grid;grid-template-columns:200px 1fr;gap:6px 16px;margin:0;font-size:14px}
 .review dt{color:var(--muted)}
@@ -111,6 +112,7 @@ legend{font-weight:500;color:var(--ink);font-size:14px;margin-bottom:8px;padding
 .ins input{margin-top:3px;accent-color:var(--red);width:18px;height:18px;flex:none}
 .ins-body{display:flex;flex-direction:column;gap:2px;color:var(--ink)}
 .ins .lim{font-size:13px;color:var(--muted)}
+.ins-note{margin:6px 0 4px;padding:12px 14px;border-left:3px solid var(--red);background:var(--bg);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--text)}
 .ins:has(input:checked){border-color:var(--ink);background:#FAFAFA}
 .review dl{grid-template-columns:1fr}.review dd{margin-bottom:8px}}
 .done-card{text-align:center;padding:40px 20px}
@@ -218,11 +220,13 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
             <div class="chips" id="categoryChips"></div>
             <div class="err">Select at least one service.</div>
           </fieldset>
-          <div class="full fld"><label class="f" for="capabilities_summary">Tell us about your work/ Equipment <span class="hint" style="display:inline">(optional)</span> <span class="count" id="capCount">0 / 1000</span></label>
-            <textarea id="capabilities_summary" name="capabilities_summary" maxlength="1000" placeholder="For example: number of crews, key equipment (AT37G bucket, 20x32 drill, 1250 quad plow, SPX25 plow, Plummet superjet), typical job size, and the carriers or contractors you've worked for."></textarea></div>
-          <div class="fld"><label class="f" for="self_perform">How do you perform the work?</label>
+          <div class="full fld"><label class="f" for="key_equipment">Key equipment <span class="hint" style="display:inline">(optional)</span></label>
+            <textarea id="key_equipment" name="key_equipment" maxlength="1000" style="min-height:80px" placeholder="For example: 20x32 drill, 1250 quad plow, AT37G bucket truck, splicing trailer."></textarea></div>
+          <div class="full fld"><label class="f" for="capabilities_summary">What sets your team apart? <span class="hint" style="display:inline">(optional)</span> <span class="count" id="capCount">0 / 1000</span></label>
+            <textarea id="capabilities_summary" name="capabilities_summary" maxlength="1000" placeholder="For example: crew count, certifications, the types of projects you do best, and the carriers or contractors you've worked for."></textarea></div>
+          <div class="fld"><label class="f" for="self_perform">Who performs the work?</label>
             <select id="self_perform" name="self_perform">
-              <option value="">Select…</option><option>Self-perform with our own crews</option><option>Subcontract</option><option>Both</option>
+              <option value="">Select…</option><option>Our own W2 employees</option><option>Subcontractors (1099)</option><option>Both</option>
             </select></div>
           <fieldset class="full fld" data-group="service_states" id="statesField">
             <legend>Where can you provide products or services? <span class="req">*</span></legend>
@@ -236,7 +240,7 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
       <!-- STEP 4 -->
       <section class="section" data-step="4">
         <h2>Insurance</h2>
-        <p class="sub">Contractors must carry the coverage below before starting work with Triage. Select what you have today. If you're missing something, you can still register and we'll let you know what's needed before work begins. If you're selected, we'll ask for a certificate of insurance (COI).</p>
+        <p class="sub">Select the coverage you carry today. Don't have all of these? You can still register.</p>
         <div class="grid">
           <div class="full" id="insuranceList"></div>
           <div class="fld"><label class="f" for="referral_source">How did you hear about us?</label>
@@ -284,14 +288,14 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
   const CATEGORIES = [
     "Fiber install & repair","Copper install & repair",
     "Drop bury","Aerial construction","Underground construction","Directional boring","Plowing",
-    "Engineering"
+    "OSP & MDU engineering"
   ];
   const INSURANCE = [
-    {key:"ins_general_liability", title:"Commercial General Liability", limits:"$1,000,000 each occurrence · $2,000,000 general aggregate."},
-    {key:"ins_auto", title:"Comprehensive Auto Liability", limits:"$2,000,000 combined single limit per occurrence, covering all owned, non-owned and hired vehicles used for the work."},
-    {key:"ins_workers_comp", title:"Workers' Compensation / Employer's Liability", limits:"$1,000,000 each accident · $1,000,000 disease – policy limit · $1,000,000 disease – each employee."},
-    {key:"ins_umbrella", title:"Umbrella / Excess Liability", limits:"$5,000,000 per occurrence, following form over general liability, auto and workers' compensation / employer's liability."},
-    {key:"ins_professional", title:"Professional Liability (Errors & Omissions)", limits:"$1,000,000 per claim and $2,000,000 annual aggregate, for professional services."}
+    {key:"ins_general_liability", title:"Commercial General Liability", limits:"Covers bodily injury and property damage from your work."},
+    {key:"ins_auto", title:"Commercial Auto Liability", limits:"Covers owned, non-owned and hired vehicles used for the work."},
+    {key:"ins_workers_comp", title:"Workers' Compensation / Employer's Liability", limits:"Covers your employees if they're injured on the job."},
+    {key:"ins_umbrella", title:"Umbrella / Excess Liability", limits:"Extra coverage on top of your general liability, auto and employer's liability policies."},
+    {key:"ins_professional", title:"Professional Liability (Errors & Omissions)", limits:"Typically for engineering and design work."}
   ];
 
   const STATES = ["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"];
@@ -305,7 +309,7 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
     <label class="ins">
       <input type="checkbox" name="${i.key}" value="Yes">
       <span class="ins-body"><strong>${i.title}</strong><span class="lim">${i.limits}</span></span>
-    </label>`).join("");
+    </label>`).join("") + `<div class="ins-note">Insurance requirements depend on the scope of work. If we move forward together, we'll confirm the exact coverage and limits needed before any work begins.</div>`;
   $("#yr").textContent = new Date().getFullYear();
 
   const form = $("#supplierForm");
@@ -368,9 +372,9 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
   }
 
   const LABELS = {company_legal_name:"Company",dba_name:"DBA",website:"Website",hq_city:"City",hq_state:"State",hq_country:"Country",
-    employee_count:"Employees",annual_revenue:"Revenue",contact_first:"Contact first name",contact_last:"Contact last name",contact_title:"Title",
+    employee_count:"Employees",contact_first:"Contact first name",contact_last:"Contact last name",contact_title:"Title",
     contact_email:"Email",contact_phone:"Phone",categories:"Services",
-    capabilities_summary:"About your work",self_perform:"Crews",service_states:"Service area",
+    key_equipment:"Key equipment",capabilities_summary:"What sets you apart",self_perform:"Who performs the work",service_states:"Service area",
     ins_general_liability:"General liability",ins_auto:"Auto liability",ins_workers_comp:"Workers' comp",ins_umbrella:"Umbrella / excess",ins_professional:"Professional (E&O)"};
   function buildReview(){
     const d = collect();
