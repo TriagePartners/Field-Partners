@@ -187,12 +187,6 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
             <select id="employee_count" name="employee_count" required>
               <option value="">Select…</option><option>1–10</option><option>11–50</option><option>51–200</option><option>201–500</option><option>501–1,000</option><option>1,000+</option>
             </select><div class="err">Select a range.</div></div>
-          <div class="fld"><label class="f" for="annual_revenue">Annual revenue</label>
-            <select id="annual_revenue" name="annual_revenue">
-              <option value="">Prefer not to say</option><option>Under $1M</option><option>$1M–$5M</option><option>$5M–$25M</option><option>$25M–$100M</option><option>$100M+</option>
-            </select></div>
-          <div class="fld"><label class="f" for="uei_duns">UEI or D-U-N-S number</label>
-            <input type="text" id="uei_duns" name="uei_duns"><div class="hint">Optional</div></div>
         </div>
       </section>
 
@@ -224,8 +218,8 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
             <div class="chips" id="categoryChips"></div>
             <div class="err">Select at least one service.</div>
           </fieldset>
-          <div class="full fld"><label class="f" for="capabilities_summary">Tell us about your work <span class="hint" style="display:inline">(optional)</span> <span class="count" id="capCount">0 / 1000</span></label>
-            <textarea id="capabilities_summary" name="capabilities_summary" maxlength="1000" placeholder="For example: number of crews, key equipment (bore rigs, plows, bucket trucks, splicing trailers), typical job size, and the carriers or contractors you've worked for."></textarea></div>
+          <div class="full fld"><label class="f" for="capabilities_summary">Tell us about your work/ Equipment <span class="hint" style="display:inline">(optional)</span> <span class="count" id="capCount">0 / 1000</span></label>
+            <textarea id="capabilities_summary" name="capabilities_summary" maxlength="1000" placeholder="For example: number of crews, key equipment (AT37G bucket, 20x32 drill, 1250 quad plow, SPX25 plow, Plummet superjet), typical job size, and the carriers or contractors you've worked for."></textarea></div>
           <div class="fld"><label class="f" for="self_perform">How do you perform the work?</label>
             <select id="self_perform" name="self_perform">
               <option value="">Select…</option><option>Self-perform with our own crews</option><option>Subcontract</option><option>Both</option>
