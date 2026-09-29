@@ -416,6 +416,8 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 20px 40px
         from_name: "Triage Field Partner Registration",
         replyto: data.contact_email
       }, data);
+      // Machine-readable copy for the Power Automate flow (UTF-8 JSON, base64-encoded between markers)
+      body.tp_data = "TPDATA[" + btoa(unescape(encodeURIComponent(JSON.stringify(data)))) + "]TPDATA";
       const res = await fetch("https://api.web3forms.com/submit", {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body: JSON.stringify(body)});
       const out = await res.json().catch(()=>({}));
       if (!res.ok || out.success === false) throw new Error(out.message || ("HTTP "+res.status));
